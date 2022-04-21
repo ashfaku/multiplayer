@@ -33,6 +33,8 @@ class Map extends React.Component
 				case 40:
 					player.move('y', -10);
 					break;
+                                default:
+                                        break;
 			}
 		};
 		document.getElementById("map").onkeyup = function (event) 
