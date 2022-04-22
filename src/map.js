@@ -10,7 +10,7 @@ function Model({ ...props }) {
   useFrame(() => {
 	group.current.position.x = player.getX();
 	//group.current.position.y = player.getY();
-	//group.current.position.z = player.getZ();
+	group.current.position.z = player.getZ();
 	
   });
   const { nodes, materials, animations } = useGLTF('/CesiumMan.gltf');
