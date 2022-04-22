@@ -1,21 +1,27 @@
 import React, {Suspense } from 'react';
 import './map.css';
 import {useRef, useState} from 'react';
-import {Canvas} from '@react-three/fiber';
+import {Canvas, useFrame} from '@react-three/fiber';
 import {OrbitControls, useGLTF, useAnimations} from '@react-three/drei';
 var player;
 
 function Model({ ...props }) {
-  const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/CesiumMan.gltf')
-  const { actions } = useAnimations(animations, group)
+  const group = useRef();
+  useFrame(() => {
+	group.current.position.x = player.getX();
+	//group.current.position.y = player.getY();
+	//group.current.position.z = player.getZ();
+	
+  });
+  const { nodes, materials, animations } = useGLTF('/CesiumMan.gltf');
+  const { actions } = useAnimations(animations, group);
   return (
-    <group ref={group} {...props} dispose={null} scale = {1}>
+    <group ref={group} {...props} dispose={null} scale = {1}> 
       <group>
         <group rotation={[-Math.PI / 2, 0, 0]}>
           <group rotation={[0, 0, -Math.PI / 2]}>
             <primitive object={nodes.Skeleton_torso_joint_1} />
-            <skinnedMesh geometry={nodes.Cesium_Man.geometry} material={materials['Cesium_Man-effect']} skeleton={nodes.Cesium_Man.skeleton} />
+            <skinnedMesh geometry={nodes.Cesium_Man.geometry} material={materials['Cesium_Man-effect']} material-color = {"red"} skeleton={nodes.Cesium_Man.skeleton} />
           </group>
         </group>
       </group>
@@ -44,16 +50,16 @@ class Map extends React.Component
 			switch (event.keyCode) {
 				case 37:
 					console.log("Left key is pressed.");
-					player.move('x', 10);
+					player.moveX(.1);
 					break;
 				case 38:
-					player.move('y', 10);
+					player.moveY(.1);
 					break;
 				case 39:
-					player.move('x', -10);
+					player.moveX(-.1);
 					break;
 				case 40:
-					player.move('y', -10);
+					player.moveY(-.1);
 					break;
                 default:
                     break;
@@ -75,8 +81,8 @@ class Map extends React.Component
                                      penumbra={1} 
                                      position={[10,15,10]}
                                      castShadow />
-					<Model id = "avatar" />
-					<OrbitControls enablePan={false}
+					<Model />
+					<OrbitControls minPolarAngle = {Math.PI / 4} maxPolarAngle={Math.PI / 4} enablePan={false}
                                          enableZoom={false}
                                          enableRotate={true}/>
 				</Suspense>

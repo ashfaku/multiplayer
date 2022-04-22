@@ -43,7 +43,10 @@ export default class Player
 	}
 	getY()
 	{
+		return 0;
+	}
+	getZ()
+	{
 		return this.y;
 	}
-
 }
