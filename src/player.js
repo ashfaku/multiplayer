@@ -6,11 +6,11 @@ export default class Player
 		this.y = 0;
 		this.map = null;
 	}
-	setMap(m, p)
+	setMap(m)//, p)
 	{
 		this.map = m;
-		this.player = p;
-		this.player.src = "https://im2.ezgif.com/tmp/ezgif-2-ca60be9749-gif-im/frame_0_delay-0.07s.gif";
+//		this.player = p;
+	//	this.player.src = "https://im2.ezgif.com/tmp/ezgif-2-ca60be9749-gif-im/frame_0_delay-0.07s.gif";
 	}
 	moveX(m)
 	{
@@ -22,12 +22,12 @@ export default class Player
 	}
 	moving()
 	{
-		if (this.player.src !== "https://media.giphy.com/media/7w6jMHHv3F8re/giphy.gif")
-			this.player.src = "https://media.giphy.com/media/7w6jMHHv3F8re/giphy.gif";
+//		if (this.player.src !== "https://media.giphy.com/media/7w6jMHHv3F8re/giphy.gif")
+	//		this.player.src = "https://media.giphy.com/media/7w6jMHHv3F8re/giphy.gif";
 	}
 	stop()
 	{
-		this.player.src = "https://im2.ezgif.com/tmp/ezgif-2-ca60be9749-gif-im/frame_0_delay-0.07s.gif";	
+		//this.player.src = "https://im2.ezgif.com/tmp/ezgif-2-ca60be9749-gif-im/frame_0_delay-0.07s.gif";	
 	}
 	move = (d, v) =>
 	{
