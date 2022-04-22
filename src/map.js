@@ -1,6 +1,6 @@
 import React, {Suspense } from 'react';
 import './map.css';
-import {useRef, useState} from 'react';
+import {useRef} from 'react';
 import {Canvas, useFrame} from '@react-three/fiber';
 import {OrbitControls, useGLTF, useAnimations} from '@react-three/drei';
 var player;
@@ -15,7 +15,8 @@ function Model({ ...props }) {
   });
   const { nodes, materials, animations } = useGLTF('/CesiumMan.gltf');
   const { actions } = useAnimations(animations, group);
-  return (
+   console.log(actions);
+   return (
     <group ref={group} {...props} dispose={null} scale = {1}> 
       <group>
         <group rotation={[-Math.PI / 2, 0, 0]}>
